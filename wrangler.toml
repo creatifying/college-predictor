@@ -1,0 +1,28 @@
+#:schema node_modules/wrangler/config-schema.json
+name = "collegepredictor"
+compatibility_date = "2024-04-03"
+compatibility_flags = ["nodejs_compat"]
+pages_build_output_dir = ".vercel/output/static"
+
+[[d1_databases]]
+binding = "collegepredictor_db"
+database_name = "your-d1-database-name"
+database_id = "your-d1-database-id"
+
+[env.production]
+compatibility_date = "2024-04-03"
+compatibility_flags = ["nodejs_compat"]
+
+[[env.production.d1_databases]]
+binding = "collegepredictor_db"
+database_name = "your-d1-database-name"
+database_id = "your-d1-database-id"
+
+[env.preview]
+compatibility_date = "2024-04-03"
+compatibility_flags = ["nodejs_compat"]
+
+[[env.preview.d1_databases]]
+binding = "collegepredictor_db"
+database_name = "your-d1-database-name"
+database_id = "your-d1-database-id"

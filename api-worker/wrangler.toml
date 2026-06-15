@@ -1,0 +1,8 @@
+name = "college-predictor-api"
+main = "src/index.ts"
+compatibility_date = "2024-04-03"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "your-d1-database-name"
+database_id = "your-d1-database-id"

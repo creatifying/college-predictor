@@ -1,0 +1,76 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["driverAdapters"]
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Institute {
+  id    Int    @id @default(autoincrement())
+  code  Int    @unique
+  name  String
+  type  String // IIT, NIT, IIIT, GFTI
+
+  cutoffsJosaa CutoffJosaa[]
+  cutoffsCsab  CutoffCsab[]
+}
+
+model CutoffJosaa {
+  id              Int     @id @default(autoincrement())
+  programName     String
+  quota           String
+  seatType        String
+  gender          String
+  openingRank     Int
+  closingRank     Int
+  round           Int
+  programDuration Int
+  programType     String
+  isPwd           Boolean @default(false)
+
+  instituteCode   Int
+  institute       Institute @relation(fields: [instituteCode], references: [code])
+
+  @@index([seatType, gender, round])
+  @@index([instituteCode])
+  @@index([round])
+  @@index([quota, seatType, gender, round])
+}
+
+model CutoffCsab {
+  id              Int     @id @default(autoincrement())
+  programName     String
+  quota           String
+  seatType        String
+  gender          String
+  openingRank     Int
+  closingRank     Int
+  round           Int
+  programDuration Int
+  programType     String
+  isPwd           Boolean @default(false)
+
+  instituteCode   Int
+  institute       Institute @relation(fields: [instituteCode], references: [code])
+
+  @@index([seatType, gender, round])
+  @@index([instituteCode])
+  @@index([round])
+  @@index([quota, seatType, gender, round])
+}
+
+model UserPrediction {
+  id            Int      @id @default(autoincrement())
+  createdAt     DateTime @default(now())
+  name          String
+  email         String
+  crlRank       Int
+  categoryRank  Int?
+  category      String
+  gender        String
+  homeState     String
+  predictorType String   // josaa or csab
+}
+
